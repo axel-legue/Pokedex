@@ -52,6 +52,5 @@ interface PokemonRepository {
                 Either.Left(ServerError)
             }
         }
-
     }
 }
