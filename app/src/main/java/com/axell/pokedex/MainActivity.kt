@@ -4,24 +4,24 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.axell.pokedex.feature.home.ui.HomeBody
-import com.axell.pokedex.feature.pokemons.ui.PokemonsViewModel
+import com.axell.pokedex.feature.pokemons.ui.PokemonsBody
 import com.axell.pokedex.ui.theme.PokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val pokemonsViewModel: PokemonsViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -32,7 +32,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun PokedexApp() {
-
     PokedexTheme {
         val allScreens = PokedexScreen.values().toList()
         val navController = rememberNavController()
@@ -48,8 +47,7 @@ private fun PokedexApp() {
                 composable(PokedexScreen.Home.name) {
                     HomeBody(
                         onPokemonsClick = {
-                            /*navController.navigate(PokedexScreen.Pokemons.name) */
-                            Toast.makeText(context, "Pokemons to be implemented", Toast.LENGTH_SHORT).show()
+                            navController.navigate(PokedexScreen.Pokemons.name)
                         },
                         onFavoritesClick = { Toast.makeText(context, "Favorites to be implemented", Toast.LENGTH_SHORT).show() },
                         onTypesClick = { Toast.makeText(context, "Types to be implemented", Toast.LENGTH_SHORT).show() },
@@ -60,6 +58,10 @@ private fun PokedexApp() {
                 composable(PokedexScreen.Favorites.name) {
                 }
                 composable(PokedexScreen.Pokemons.name) {
+                    PokemonsBody(
+                        onPokemonSelected = {},
+                        pokemonsViewModel = hiltViewModel()
+                    )
                 }
                 composable(PokedexScreen.PokemonDetails.name) {
                 }

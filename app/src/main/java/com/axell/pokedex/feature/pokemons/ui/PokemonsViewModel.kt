@@ -18,10 +18,10 @@ class PokemonsViewModel @Inject constructor(private val fetchPokemons: FetchPoke
     fun pokemons(): LiveData<List<PokemonEntity>> = _pokemons
 
     fun loadPokemons() = fetchPokemons(UseCase.None(), viewModelScope) {
-        it.fold(::handleFailure, ::hanldePokemonList)
+        it.fold(::handleFailure, ::handlePokemonList)
     }
 
-    private fun hanldePokemonList(pokemons: List<PokemonEntity>) {
+    private fun handlePokemonList(pokemons: List<PokemonEntity>) {
         Timber.d("pokemons: $pokemons ")
         _pokemons.postValue(pokemons)
     }

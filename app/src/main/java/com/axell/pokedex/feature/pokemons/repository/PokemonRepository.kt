@@ -7,8 +7,8 @@ import com.axell.pokedex.core.platform.NetworkHandler
 import com.axell.pokedex.feature.pokemons.entity.PokemonEntity
 import com.axell.pokedex.feature.pokemons.entity.PokemonsEntity
 import com.axell.pokedex.feature.pokemons.service.PokemonService
-import retrofit2.Call
 import javax.inject.Inject
+import retrofit2.Call
 
 interface PokemonRepository {
     fun pokemons(): Either<Failure, List<PokemonEntity>>
@@ -40,12 +40,8 @@ interface PokemonRepository {
         ): Either<Failure, R> {
             return try {
                 val response = call.execute()
-
                 when (response.isSuccessful) {
-                    true -> {
-                        val test = response.body().toString()
-                        Either.Right(transform((response.body() ?: default)))
-                    }
+                    true -> Either.Right(transform((response.body() ?: default)))
                     false -> Either.Left(ServerError)
                 }
             } catch (exception: Throwable) {
