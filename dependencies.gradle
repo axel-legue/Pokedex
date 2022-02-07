@@ -41,6 +41,9 @@ ext.versions = [
         // coil
         coilVersion          : '1.4.0',
 
+        // paging
+        pagingVersion        : '1.0.0-alpha14',
+
         // logger
         timberVersion        : '5.0.1',
 

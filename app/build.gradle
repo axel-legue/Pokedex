@@ -92,6 +92,9 @@ dependencies {
     // coil
     implementation "io.coil-kt:coil-compose:$versions.coilVersion"
 
+    // paging
+    implementation "androidx.paging:paging-compose:$versions.pagingVersion"
+
     // coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"

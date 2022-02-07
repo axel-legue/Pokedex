@@ -7,6 +7,6 @@ import com.axell.pokedex.feature.pokemons.entity.PokemonEntity
 import com.axell.pokedex.feature.pokemons.repository.PokemonRepository
 import javax.inject.Inject
 
-class FetchPokemons @Inject constructor(private val pokemonRepository: PokemonRepository) : UseCase<List<PokemonEntity>, UseCase.None>() {
-    override suspend fun run(params: None): Either<Failure, List<PokemonEntity>> = pokemonRepository.pokemons()
+class FetchPokemons @Inject constructor(private val pokemonRepository: PokemonRepository) : UseCase<List<PokemonEntity>, Int>() {
+    override suspend fun run(page: Int): Either<Failure, List<PokemonEntity>> = pokemonRepository.pokemons(page)
 }

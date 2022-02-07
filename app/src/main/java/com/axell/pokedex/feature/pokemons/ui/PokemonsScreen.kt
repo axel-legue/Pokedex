@@ -9,38 +9,34 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowRight
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.rememberImagePainter
-import com.axell.pokedex.feature.pokemons.entity.PokemonEntity
 
 @Composable
 fun PokemonsBody(
     onPokemonSelected: () -> Unit = {},
     pokemonsViewModel: PokemonsViewModel = viewModel()
 ) {
-    pokemonsViewModel.loadPokemons()
-    val pokemons: List<PokemonEntity> by pokemonsViewModel.pokemons().observeAsState(listOf())
+    val pokemonsTest = pokemonsViewModel.getAllPokemons().collectAsLazyPagingItems()
     LazyColumn {
-        items(items = pokemons) { pokemon ->
-            PokemonCard(name = pokemon.name, picture = pokemon.getImageUrl(), types = listOf())
+        items(pokemonsTest.itemCount) { index ->
+            pokemonsTest[index]?.let { pokemon ->
+                PokemonCard(name = pokemon.name, picture = pokemon.getImageUrl(), types = listOf())
+            }
         }
     }
-
-    pokemonsViewModel.pokemons()
 }
 
 @Composable
