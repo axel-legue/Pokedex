@@ -7,7 +7,7 @@ enum class PokedexScreen() {
     Items,
     Moves,
     Types,
-    PokemonDetails;
+    PokemonInfo;
 
     companion object {
         fun fromRoute(route: String?): PokedexScreen =
@@ -18,7 +18,7 @@ enum class PokedexScreen() {
                 Items.name -> Items
                 Moves.name -> Moves
                 Types.name -> Types
-                PokemonDetails.name -> PokemonDetails
+                PokemonInfo.name -> PokemonInfo
                 null -> Home
                 else -> throw IllegalArgumentException("Route $route is not recognized.")
             }

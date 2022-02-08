@@ -25,12 +25,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.axell.pokedex.ui.theme.PokedexTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun HomeBody(
@@ -40,11 +43,14 @@ fun HomeBody(
     onItemsClick: () -> Unit = {},
     onMovesClick: () -> Unit = {},
 ) {
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setSystemBarsColor(Color(0xFF1E1E1E))
     Surface(
         color = Color(0xFF1E1E1E),
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
+            .semantics { contentDescription = "Home Screen" }
     ) {
         Column(modifier = Modifier.padding(24.dp)) {
             Title(
@@ -56,7 +62,7 @@ fun HomeBody(
                 name = "Pokemon",
                 color = Color(0xFF4EB54F),
                 modifier = Modifier
-                    .padding(bottom = 12.dp)
+                    .padding(vertical = 12.dp)
                     .fillMaxWidth()
             ) {
                 onPokemonsClick()

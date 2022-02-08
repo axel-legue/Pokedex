@@ -9,9 +9,6 @@ import com.axell.pokedex.feature.pokemons.entity.PokemonEntity
 import com.axell.pokedex.feature.pokemons.entity.PokemonsEntity
 import com.axell.pokedex.feature.pokemons.service.PokemonService
 import javax.inject.Inject
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import retrofit2.Call
 
 interface PokemonRepository {
     suspend fun pokemons(page: Int): Either<Failure, List<PokemonEntity>>
@@ -30,25 +27,17 @@ interface PokemonRepository {
                     },
                     default = PokemonsEntity(count = 0, next = null, previous = null, results = listOf())
                 )
-                false -> {
-                    Either.Left(Failure.NetworkConnectionError)
-                }
+                false -> Either.Left(Failure.NetworkConnectionError)
             }
         }
 
-        private suspend fun <T, R> request(
-            call: Call<T>,
+        private fun <T, R> request(
+            response: T,
             transform: (T) -> R,
             default: T
         ): Either<Failure, R> {
             return try {
-                withContext(Dispatchers.Default) {
-                    val response = call.execute()
-                    when (response.isSuccessful) {
-                        true -> Either.Right(transform((response.body() ?: default)))
-                        false -> Either.Left(ServerError)
-                    }
-                }
+                Either.Right(transform((response ?: default)))
             } catch (exception: Throwable) {
                 Either.Left(ServerError)
             }

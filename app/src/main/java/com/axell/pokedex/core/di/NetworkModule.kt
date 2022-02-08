@@ -1,6 +1,7 @@
 package com.axell.pokedex.core.di
 
 import com.axell.pokedex.BuildConfig
+import com.axell.pokedex.feature.pokemoninfo.repository.PokemonInfoRepository
 import com.axell.pokedex.feature.pokemons.repository.PokemonRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -8,11 +9,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -49,4 +50,8 @@ class NetworkModule {
     @Provides
     @Singleton
     fun providePokemonRepository(dataSource: PokemonRepository.Network): PokemonRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun providePokemonInfoRepository(dataSource: PokemonInfoRepository.Network): PokemonInfoRepository = dataSource
 }
