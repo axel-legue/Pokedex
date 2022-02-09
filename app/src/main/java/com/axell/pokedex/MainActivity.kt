@@ -50,7 +50,6 @@ private fun PokedexApp() {
                 PokedexNavHost(navController = navController, modifier = Modifier.padding(innerPadding))
             }
         }
-
     }
 }
 
@@ -71,7 +70,7 @@ fun PokedexNavHost(
                 onFavoritesClick = { /* TODO: add favorites screen */ },
                 onTypesClick = { /* TODO: add types screen  */ },
                 onItemsClick = { /* TODO: add items screen  */ },
-                onMovesClick = {  /* TODO: add moves screen  */ }
+                onMovesClick = { /* TODO: add moves screen  */ }
             )
         }
         composable(PokedexScreen.Pokemons.name) {
@@ -91,9 +90,11 @@ fun PokedexNavHost(
                     type = NavType.StringType
                 }
             ),
-            deepLinks = listOf(navDeepLink {
-                uriPattern = "pokedex://${PokedexScreen.PokemonInfo.name}/{name}"
-            })
+            deepLinks = listOf(
+                navDeepLink {
+                    uriPattern = "pokedex://${PokedexScreen.PokemonInfo.name}/{name}"
+                }
+            )
         ) { entry ->
             val pokemonName = entry.arguments?.getString("name")
             PokemonInfoBody(

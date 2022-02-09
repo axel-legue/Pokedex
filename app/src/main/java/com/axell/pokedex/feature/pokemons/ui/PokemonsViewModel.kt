@@ -9,8 +9,8 @@ import com.axell.pokedex.core.platform.BaseViewModel
 import com.axell.pokedex.feature.pokemons.PokemonSource
 import com.axell.pokedex.feature.pokemons.entity.PokemonEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 @HiltViewModel
 class PokemonsViewModel @Inject constructor(private val pokemonSource: PokemonSource) : BaseViewModel() {
@@ -20,5 +20,4 @@ class PokemonsViewModel @Inject constructor(private val pokemonSource: PokemonSo
             pokemonSource
         }.flow.cachedIn(viewModelScope)
     }
-
 }

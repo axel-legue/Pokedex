@@ -8,9 +8,9 @@ import com.axell.pokedex.core.platform.BaseViewModel
 import com.axell.pokedex.feature.pokemoninfo.entity.PokemonInfoEntity
 import com.axell.pokedex.feature.pokemoninfo.usecase.FetchPokemonInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import timber.log.Timber
+import javax.inject.Inject
 
 @HiltViewModel
 class PokemonInfoViewModel @Inject constructor(

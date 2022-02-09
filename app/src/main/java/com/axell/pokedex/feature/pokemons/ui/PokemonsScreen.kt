@@ -41,9 +41,10 @@ fun PokemonsBody(
     val pokemonItems = pokemonsViewModel.getAllPokemons().collectAsLazyPagingItems()
     val systemUiController = rememberSystemUiController()
     systemUiController.setSystemBarsColor(Color(0xFF1E1E1E))
-    Surface(modifier = Modifier
-        .background(color = Color(0xFF1E1E1E))
-        .semantics { contentDescription = "Pokemons Screen" }
+    Surface(
+        modifier = Modifier
+            .background(color = Color(0xFF1E1E1E))
+            .semantics { contentDescription = "Pokemons Screen" }
     ) {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(2.dp),
@@ -72,7 +73,6 @@ fun PokemonsBody(
             }
         }
     }
-
 }
 
 @Composable

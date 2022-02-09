@@ -33,4 +33,3 @@ val Dark = Color(0xFF705848)
 val Fairy = Color(0xFFEE99AC)
 val Shadow = Color(0xFF2C2E2B)
 val Unknown = Color(0xFF68A090)
-

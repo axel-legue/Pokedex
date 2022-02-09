@@ -29,5 +29,4 @@ class PokedexNavHostTest {
             .onNodeWithContentDescription("Home Screen")
             .assertIsDisplayed()
     }
-
 }

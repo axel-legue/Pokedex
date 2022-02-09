@@ -50,5 +50,4 @@ data class PokemonInfoEntity(
         const val maxSpeed = 300
         const val maxExp = 1000
     }
-
 }

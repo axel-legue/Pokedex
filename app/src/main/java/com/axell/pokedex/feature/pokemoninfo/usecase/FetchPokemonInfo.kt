@@ -11,5 +11,4 @@ class FetchPokemonInfo @Inject constructor(
     private val pokemonInfoRepository: PokemonInfoRepository
 ) : UseCase<PokemonInfoEntity, String>() {
     override suspend fun run(params: String): Either<Failure, PokemonInfoEntity> = pokemonInfoRepository.pokemonInfo(params)
-
 }

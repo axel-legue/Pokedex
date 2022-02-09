@@ -31,7 +31,8 @@ interface PokemonInfoRepository {
                         defense = 0,
                         speed = 0,
                         exp = 0
-                    ), transform = {
+                    ),
+                    transform = {
                         it
                     }
                 )

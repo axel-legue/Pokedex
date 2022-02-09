@@ -1,9 +1,7 @@
 package com.axell.pokedex.core.interactor
 
-import com.axell.pokedex.core.di.DefaultDispatcher
 import com.axell.pokedex.core.exception.Failure
 import com.axell.pokedex.core.functional.Either
-import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

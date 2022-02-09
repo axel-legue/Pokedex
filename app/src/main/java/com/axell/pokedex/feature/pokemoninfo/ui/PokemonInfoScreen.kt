@@ -57,9 +57,11 @@ fun PokemonInfoBody(
     val types = mutableListOf<PokemonType>()
 
     pokemonInfo.value?.let {
-        types.addAll(it.types.map { typeResponse ->
-            typeResponse.type.toPokemonType()
-        })
+        types.addAll(
+            it.types.map { typeResponse ->
+                typeResponse.type.toPokemonType()
+            }
+        )
     }
     if (types.isNotEmpty()) {
         SideEffect {
@@ -115,7 +117,6 @@ fun PokemonInfoBody(
                 )
             }
         }
-
     }
 }
 
