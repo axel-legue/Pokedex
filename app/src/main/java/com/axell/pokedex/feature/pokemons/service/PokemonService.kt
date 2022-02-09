@@ -9,5 +9,5 @@ class PokemonService @Inject constructor(retrofit: Retrofit) : PokemonApi {
 
     private val pokemonApi by lazy { retrofit.create(PokemonApi::class.java) }
 
-    override fun fetchPokemons(offset: Int, limit: Int) = pokemonApi.fetchPokemons()
+    override suspend fun fetchPokemons(offset: Int, limit: Int) = pokemonApi.fetchPokemons(offset = offset, limit = limit)
 }

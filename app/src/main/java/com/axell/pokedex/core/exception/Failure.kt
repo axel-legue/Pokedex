@@ -5,4 +5,3 @@ sealed class Failure {
     object ServerError : Failure()
     object Unknown : Failure()
 }
-

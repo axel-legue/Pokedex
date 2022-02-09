@@ -21,6 +21,5 @@ class NetworkHandler @Inject constructor(@ApplicationContext private val context
             activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
             else -> false
         }
-
     }
 }

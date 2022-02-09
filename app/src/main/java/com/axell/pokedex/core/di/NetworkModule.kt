@@ -1,6 +1,7 @@
 package com.axell.pokedex.core.di
 
 import com.axell.pokedex.BuildConfig
+import com.axell.pokedex.feature.pokemoninfo.repository.PokemonInfoRepository
 import com.axell.pokedex.feature.pokemons.repository.PokemonRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -49,4 +50,8 @@ class NetworkModule {
     @Provides
     @Singleton
     fun providePokemonRepository(dataSource: PokemonRepository.Network): PokemonRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun providePokemonInfoRepository(dataSource: PokemonInfoRepository.Network): PokemonInfoRepository = dataSource
 }

@@ -2,7 +2,10 @@ package com.axell.pokedex.core.interactor
 
 import com.axell.pokedex.core.exception.Failure
 import com.axell.pokedex.core.functional.Either
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 abstract class UseCase<out Type, in Params> where Type : Any {
 
@@ -10,14 +13,14 @@ abstract class UseCase<out Type, in Params> where Type : Any {
 
     operator fun invoke(
         params: Params,
-        scope: CoroutineScope = GlobalScope,
+        scope: CoroutineScope,
+        dispatcher: CoroutineDispatcher,
         onResult: (Either<Failure, Type>) -> Unit = {}
     ) {
-        scope.launch(Dispatchers.Main) {
-            val deferred = async(Dispatchers.IO) {
-                run(params)
+        scope.launch {
+            withContext(dispatcher) {
+                onResult(run(params = params))
             }
-            onResult(deferred.await())
         }
     }
 
